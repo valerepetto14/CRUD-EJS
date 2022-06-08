@@ -1,0 +1,26 @@
+<div class="w-10 p-5">
+    <button type="button" class="btn btn-primary"><a style="color:white;" href="/create">Add</a></button>
+    <button type="button" class="btn btn-primary"><a style="color:white;" href="/update">Update</a></button>
+    <button type="button" class="btn btn-primary"><a style="color:white;" href="/delete">Delete</a></button>
+    <br>
+    <br>
+    <table class="table w-10 p-1" style="background-color: white;">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Last name</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% results.forEach((user) => { %>
+                <tr>
+                    <td><%= user.id %> </td>
+                    <td><%= user.Nombre %> </td>
+                    <td><%= user.Apellido %> </td>
+                </tr>
+            <% }); %> 
+        </tbody>
+    </table>
+</div>
