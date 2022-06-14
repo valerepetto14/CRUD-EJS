@@ -1,26 +1,50 @@
 <div class="w-10 p-5">
-    <button type="button" class="btn btn-primary"><a style="color:white;" href="/create">Add</a></button>
-    <button type="button" class="btn btn-primary"><a style="color:white;" href="/update">Update</a></button>
-    <button type="button" class="btn btn-primary"><a style="color:white;" href="/delete">Delete</a></button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Add</button>
     <br>
-    <br>
-    <table class="table w-10 p-1" style="background-color: white;">
+    <table class="table w-10" style="background-color: white;">
         <thead class="table-dark">
             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Last name</th>
-                <th scope="col"></th>
+                <th class="w-20 py-4 ..." scope="col">ID</th>
+                <th class="w-1/4 py-4 ..." scope="col">Name</th>
+                <th  class="w-1/2 py-4 ..." scope="col">Last name</th>
+                <th style="width: 200px ;" class="w-28px py-4 ..." scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
-            <% results.forEach((user) => { %>
+            <% results.forEach((user) => { %>e
                 <tr>
                     <td><%= user.id %> </td>
                     <td><%= user.Nombre %> </td>
                     <td><%= user.Apellido %> </td>
+                    <td>
+                        <button type="button" class="btn btn-primary"><a style="color:white;" href="/edit/<%= user.id %>">Edit</button>
+                        <button type="button" class="btn btn-primary"><a style="color:white;" href="/delete">Delete</button>
+                    </td>
                 </tr>
             <% }); %> 
         </tbody>
     </table>
+</div>
+
+<!-- The Modal -->
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-ml">
+      <div class="modal-content">
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div style="margin:50px;">
+                <h1 class="text-center text-3xl font-bold">Create user</h1>
+                <form style="display:flex;flex-direction:column" action="/save" method="POST" class="mt-4">
+                    <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-500 
+                        p-2 my-2 focus:bg-white" placeholder="add name" id="nombre" name="nombre">
+                
+                    <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-500 
+                    p-2 my-2 focus:bg-white" placeholder="add last name" id="apellido" name="apellido">
+                
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
 </div>
