@@ -8,7 +8,7 @@ const save = (req, res) =>{
         throw err;
       }else{
         res.redirect('/');
-      }
+      } 
       
   })
 }
