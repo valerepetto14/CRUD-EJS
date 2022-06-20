@@ -18,8 +18,8 @@
                     <td><%= user.Nombre %> </td>
                     <td><%= user.Apellido %> </td>
                     <td>
-                        <button id="Editar" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit">Edit</button>
-                        <button type="button" class="btn btn-primary"><a style="color:white;" href="/delete">Delete</button>
+                        <button name="edit" id="Editar" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit">Edit</button>
+                        <button type="button" class="btn btn-primary" style="color:white;"><a style="color:white;" href="/delete/<%= user.id %>">delete</a></button>
                     </td>
                 </tr>
             <% }); %> 
@@ -58,7 +58,11 @@
         <div class="modal-body">
             <div style="margin:50px;">
                 <h1 class="text-center text-3xl font-bold">Edit user</h1>
+
                 <form style="display:flex;flex-direction:column" action="/save" method="POST" class="mt-4">
+                    
+                    <input hidden id="ide" type="text">
+
                     <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-500 
                         p-2 my-2 focus:bg-white" placeholder="add name" id="nombre" name="nombre">
                 
@@ -67,6 +71,7 @@
                 
                     <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Update</button>
                 </form>
+
             </div>
         </div>
     </div>
@@ -74,15 +79,19 @@
 </div>
 
 <script>
-    let btn = document.getElementById("Editar");
-    btn.addEventListener("click",(event) => {
-        let fila = event.target.parentNode.parentNode;
-        console.log(fila);
-        var nodosEnfila = fila.getElementsByTagName('td');
-        let id = nodosEnfila[0].textContent;
-        let name = nodosEnfila[1].textContent;
-        let lastname = nodosEnfila[2].textContent;
-        document.getElementById("nombre").value = name;
-        document.getElementById("apellido").value = lastname;
-    })
+    let botones = document.querySelectorAll("button")
+    botones.forEach(boton => {
+        boton.addEventListener("click",(event) => {
+            let fila = event.target.parentNode.parentNode;
+            var nodosEnfila = fila.getElementsByTagName('td');
+            let id = nodosEnfila[0].textContent;
+            let name = nodosEnfila[1].textContent;
+            let lastname = nodosEnfila[2].textContent;
+            console.log(id);
+            document.getElementById("ide").value = id;
+            document.getElementById("nombre").value = name;
+            document.getElementById("apellido").value = lastname;
+        })
+    });
+   
 </script>
