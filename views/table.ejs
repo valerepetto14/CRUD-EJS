@@ -4,7 +4,7 @@
     <button id="add" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Add</button>
     <br>
     <br>
-    <table id="tabla1" class="table w-10" style="background-color: white;">
+    <table id="tabla1" class="table w-10" style="background-color: white; border-radius: 10px;">
         <thead class="table-dark">
             <tr>
                 <th class="w-20 py-4 ..." scope="col">ID</th>
@@ -40,7 +40,7 @@
                 <h1 class="text-center text-3xl font-bold">Create user</h1>
                 <form style="display:flex;flex-direction:column" action="/save" method="POST" class="mt-4">
 
-                    <input name="idAdd" id="idAdd" type="text">
+                    <input hidden name="idAdd" id="idAdd" type="text">
 
                     <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-500 
                         p-2 my-2 focus:bg-white" placeholder="add name" id="nombremod" name="nombre">
@@ -64,9 +64,9 @@
             <div style="margin:50px;">
                 <h1 class="text-center text-3xl font-bold">Edit user</h1>
 
-                <form style="display:flex;flex-direction:column" action="/save" method="POST" class="mt-4">
+                <form style="display:flex;flex-direction:column" action="/update" method="POST" class="mt-4">
                     
-                    <input hidden id="id-update" type="text">
+                    <input hidden id="id-update" name="id" type="text">
 
                     <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-500 
                         p-2 my-2 focus:bg-white" placeholder="add name" id="nombre" name="nombre">
@@ -107,10 +107,6 @@
         let lastRowIndex = table.rows.length-1;
         let lastFila = table.rows[lastRowIndex].getElementsByTagName('td');
         let id = lastFila[0].textContent;
-        try {
-            document.getElementById("idAdd").value = parseInt(id) + 1;
-        } catch (error) {
-            document.getElementById("idAdd").value = 0;
-        }
+        document.getElementById("idAdd").value = parseInt(id) + 1;
     });
 </script>
