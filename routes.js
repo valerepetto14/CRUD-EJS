@@ -15,10 +15,6 @@ router.get('/', (req,res) => {
     }); 
 });
 
-router.get('/create', (req,res) => {
-    res.render('create')
-});
-
 router.get('/edit/:id', (req,res)=>{    
     const id = req.params.id;
     conexion.query('SELECT * FROM usuarios WHERE id=?',[id] , (error, results) => {
@@ -32,7 +28,7 @@ router.get('/edit/:id', (req,res)=>{
 
 router.get('/delete/:id', (req, res) => {
     const id = req.params.id;
-    conexion.query('DELETE FROM usuarios WHERE id = ?',[id], (error, results)=>{
+    conexion.query('DELETE FROM usuarios WHERE id=?',[id], (error, results)=>{
         if(error){
             console.log(error);
         }else{           

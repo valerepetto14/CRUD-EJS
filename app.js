@@ -8,7 +8,7 @@ app.set('view engine','ejs');
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 app.set('port',3000);
-app.use('/',router);
+app.use('/', require('./routes'));
 
 app.listen(app.get('port'), ()=>{
     console.log("escuchando.....")

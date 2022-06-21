@@ -1,8 +1,10 @@
- <div class="w-10 p-5">
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Add</button>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">    
+<link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+<div class="w-10 p-5">
+    <button id="add" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Add</button>
     <br>
     <br>
-    <table class="table w-10" style="background-color: white;">
+    <table id="tabla1" class="table w-10" style="background-color: white;">
         <thead class="table-dark">
             <tr>
                 <th class="w-20 py-4 ..." scope="col">ID</th>
@@ -28,7 +30,7 @@
 </div>
 
 
-<!-- The Modal -->
+<!-- The Modal add-->
 <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-ml">
       <div class="modal-content">
@@ -37,6 +39,9 @@
             <div style="margin:50px;">
                 <h1 class="text-center text-3xl font-bold">Create user</h1>
                 <form style="display:flex;flex-direction:column" action="/save" method="POST" class="mt-4">
+
+                    <input name="idAdd" id="idAdd" type="text">
+
                     <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-500 
                         p-2 my-2 focus:bg-white" placeholder="add name" id="nombremod" name="nombre">
                 
@@ -50,7 +55,7 @@
     </div>
     </div>
 </div>
-
+ <!-- modal modificar -->
 <div class="modal fade" id="edit">
     <div class="modal-dialog modal-ml">
       <div class="modal-content">
@@ -61,7 +66,7 @@
 
                 <form style="display:flex;flex-direction:column" action="/save" method="POST" class="mt-4">
                     
-                    <input hidden id="ide" type="text">
+                    <input hidden id="id-update" type="text">
 
                     <input type="text" class="border border-gray-200 rounded-md bg-gray-200 w-full text-lg placeholder-gray-500 
                         p-2 my-2 focus:bg-white" placeholder="add name" id="nombre" name="nombre">
@@ -79,19 +84,33 @@
 </div>
 
 <script>
-    let botones = document.querySelectorAll("button")
+    let botones = document.querySelectorAll("#Editar")
     botones.forEach(boton => {
         boton.addEventListener("click",(event) => {
             let fila = event.target.parentNode.parentNode;
-            var nodosEnfila = fila.getElementsByTagName('td');
+            let nodosEnfila = fila.getElementsByTagName('td');
             let id = nodosEnfila[0].textContent;
             let name = nodosEnfila[1].textContent;
             let lastname = nodosEnfila[2].textContent;
             console.log(id);
-            document.getElementById("ide").value = id;
+            document.getElementById("id-update").value = id;
             document.getElementById("nombre").value = name;
             document.getElementById("apellido").value = lastname;
         })
     });
-   
+</script>
+
+<script>
+    let boton = document.getElementById("add");
+    boton.addEventListener("click", (event) => {
+        let table = document.getElementById("tabla1");
+        let lastRowIndex = table.rows.length-1;
+        let lastFila = table.rows[lastRowIndex].getElementsByTagName('td');
+        let id = lastFila[0].textContent;
+        try {
+            document.getElementById("idAdd").value = parseInt(id) + 1;
+        } catch (error) {
+            document.getElementById("idAdd").value = 0;
+        }
+    });
 </script>
