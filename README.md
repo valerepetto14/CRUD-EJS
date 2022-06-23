@@ -4,4 +4,4 @@
     motor de plantillas
     EJS
     https://www.youtube.com/watch?v=IaJqX-ba6y4&t=547s - link de video para entender ejs y layouts
-    https://blog.infranetworking.com/servidor-web/
+    https://blog.infranetworking.com/servidor-web/ - link de pagina con informacion de servidores web
